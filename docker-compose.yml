@@ -1,0 +1,44 @@
+version: "3.6"
+
+networks:
+  car-shop:
+    driver: bridge
+
+services:
+  db:
+    container_name: car-shop-db
+    environment:
+      MYSQL_ROOT_PASSWORD: "e2CS#TjE=Zs3AA"
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+    image: mysql:5.7
+    networks:
+      - car-shop
+    ports:
+      - 3306:3306
+    restart: always
+    volumes:
+      - ./storage/database:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: car-shop-phpmyadmin
+    networks:
+      - car-shop
+    ports:
+      - 8181:80
+
+  web:
+    container_name: car-shop-web
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+      - /tmp/app/mysqld:/run/mysqld
+    depends_on:
+      - db
+    networks:
+      - car-shop
