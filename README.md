@@ -26,6 +26,7 @@ To view changes in the database, go to http://localhost:8181/ on browser and you
 
 ### ER Database Diagram
 (click the image to zoom it or just download the image and zoom it by yourself so you can see better all tables relationships)
+
 ![](https://raw.githubusercontent.com/paduanton/car-shop-api/main/docs/ER-diagram.png)
 
 
