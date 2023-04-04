@@ -1,5 +1,4 @@
-/storage/*.key
-/storage/database
+storage/
 
 ### Django ###
 *.log

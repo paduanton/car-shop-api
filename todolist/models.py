@@ -1,28 +1,55 @@
 from django.db import models
+from datetime import datetime
 
-# Create your models here.
-class Todo(models.Model):
-  id = models.AutoField(
-    primary_key=True
-  )
+class CarOwner(models.Model):
+ 
+    id = models.AutoField(
+        primary_key=True
+    )
+    name = models.CharField(
+        max_length=200,
+    )
+    updated_at = models.DateTimeField(
+        auto_now=True,
+        null=False,
+        blank=False
+    )
+    created_at = models.DateTimeField(
+        default=datetime.now,
+        null=False,
+        blank=False
+    )
 
-  text = models.TextField(
-    max_length=1000,
-    null=False,
-    blank=False
-  )
+    class Meta:
+        db_table = 'CarOwners'
 
-  creation_date = models.DateTimeField(
-    auto_now_add=True,
-    null=False,
-    blank=False
-  )
+class Car(models.Model):
+    class Color(models.TextChoices):
+        YELLOW = 'yellow',
+        BLUE = 'blue',
+        GRAY = 'gray',
+    id = models.AutoField(
+        primary_key=True
+    )
+    car_owner = models.ForeignKey(CarOwner, on_delete=models.CASCADE)
+    model = models.CharField(
+        max_length=100,
+    )
+    price = models.FloatField(null=False, blank=False)
+    color = models.CharField(
+        max_length=20,
+        choices=Color.choices,
+    )
+    updated_at = models.DateTimeField(
+        auto_now=True,
+        null=False,
+        blank=False
+    )
+    created_at = models.DateTimeField(
+        default=datetime.now,
+        null=False,
+        blank=False
+    )
 
-  last_updated = models.DateTimeField(
-    auto_now=True,
-    null=False,
-    blank=False
-  )
-
-  class Meta:
-    db_table = 'Todos'
+    class Meta:
+        db_table = 'Cars'

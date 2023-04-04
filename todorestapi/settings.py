@@ -79,8 +79,8 @@ DATABASES = {
     'default': {
         # Django's MySQL engine. Powered by the mysqlclient module, which we installed in requirements.txt
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'carshop',
-        'USER': 'carshop',
+        'NAME': 'todolist',
+        'USER': 'todolist',
         'PASSWORD': '201125',
         'HOST': 'db',
         'PORT': '3306',
