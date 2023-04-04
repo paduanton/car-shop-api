@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'todolist.apps.TodolistConfig',
+    'carshop.apps.CarShoplistConfig',
     'rest_framework',
 ]
 
@@ -51,7 +51,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'todorestapi.urls'
+ROOT_URLCONF = 'restapi.urls'
 
 TEMPLATES = [
     {
@@ -69,7 +69,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'todorestapi.wsgi.application'
+WSGI_APPLICATION = 'restapi.wsgi.application'
 
 
 # Database

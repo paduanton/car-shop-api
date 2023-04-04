@@ -34,7 +34,7 @@ class Migration(migrations.Migration):
                 ('color', models.CharField(choices=[('yellow', 'Yellow'), ('blue', 'Blue'), ('gray', 'Gray')], max_length=20)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
                 ('created_at', models.DateTimeField(default=datetime.datetime.now)),
-                ('car_owner', models.ForeignKey(default='', on_delete=django.db.models.deletion.CASCADE, to='todolist.carowner')),
+                ('car_owner', models.ForeignKey(default='', on_delete=django.db.models.deletion.CASCADE, to='carshop.carowner')),
             ],
             options={
                 'db_table': 'cars',
