@@ -1,0 +1,144 @@
+{
+	"info": {
+		"_postman_id": "7f6ae96e-f38e-4ee8-971f-a877b996bbde",
+		"name": "car-shop-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5889563"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8000/car_owner/{ownerId}/cars",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"model\": \"civic\",\n    \"price\": 45455.54,\n    \"color\": \"gray\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/car_owner/1/cars",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"car_owner",
+						"1",
+						"cars"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/car_owners",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Antonio\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/car_owners",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"car_owners"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/car_owner/{ownerId}/cars",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/car_owner/1/cars",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"car_owner",
+						"1",
+						"cars"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/car_owners",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/car_owners",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"car_owners"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
