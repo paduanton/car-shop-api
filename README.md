@@ -1,6 +1,6 @@
 # Overview
 
-Car Shop API is a Restful API project that implements a system to handle sales of Cars to Car Owners. 
+Car Shop API is a Restful API project that implements a system to handle sales of Cars to Car Owners. This project is written in Python 3 Django + MySQL
 
 
 **Requirements**
