@@ -21,7 +21,7 @@ class CarOwner(models.Model):
     )
 
     class Meta:
-        db_table = 'CarOwners'
+        db_table = 'car_owners'
 
 class Car(models.Model):
     class Color(models.TextChoices):
@@ -52,4 +52,4 @@ class Car(models.Model):
     )
 
     class Meta:
-        db_table = 'Cars'
+        db_table = 'cars'

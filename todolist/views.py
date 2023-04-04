@@ -2,7 +2,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.mixins import UpdateModelMixin, DestroyModelMixin
 
-from .models import Todo
+from .models import Car
 from .serializers import TodoSerializer
 
 
@@ -15,15 +15,15 @@ class TodoListView(
     def get(self, request, id=None):
         if id:
             try:
-                queryset = Todo.objects.get(id=id)
-            except Todo.DoesNotExist:
+                queryset = Car.objects.get(id=id)
+            except Car.DoesNotExist:
                 return Response({'errors': 'This todo item does not exist.'}, status=400)
 
             read_serializer = TodoSerializer(queryset)
 
         else:
 
-            queryset = Todo.objects.all()
+            queryset = Car.objects.all()
 
             read_serializer = TodoSerializer(queryset, many=True)
 
@@ -46,8 +46,8 @@ class TodoListView(
     def put(self, request, id=None):
         try:
 
-            todo_item = Todo.objects.get(id=id)
-        except Todo.DoesNotExist:
+            todo_item = Car.objects.get(id=id)
+        except Car.DoesNotExist:
 
             return Response({'errors': 'This todo item does not exist.'}, status=400)
 
@@ -66,8 +66,8 @@ class TodoListView(
     def delete(self, request, id=None):
         try:
 
-            todo_item = Todo.objects.get(id=id)
-        except Todo.DoesNotExist:
+            todo_item = Car.objects.get(id=id)
+        except Car.DoesNotExist:
 
             return Response({'errors': 'This todo item does not exist.'}, status=400)
 

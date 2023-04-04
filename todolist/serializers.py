@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Todo
+from .models import Car
 
 
 class TodoSerializer(serializers.ModelSerializer):
@@ -8,7 +8,7 @@ class TodoSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         # Once the request data has been validated, we can create a todo item instance in the database
-        return Todo.objects.create(
+        return Car.objects.create(
             text=validated_data.get('text')
         )
 
@@ -19,7 +19,7 @@ class TodoSerializer(serializers.ModelSerializer):
         return instance
 
     class Meta:
-        model = Todo
+        model = Car
         fields = (
             'id',
             'text'
