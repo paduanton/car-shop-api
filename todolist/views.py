@@ -35,19 +35,19 @@ class CarView(
     DestroyModelMixin,
 ):
 
-    def get(self, request):
-        queryset = CarSerializer.objects.all()
-        read_serializer = CarOwnerSerializer(queryset, many=True)
+    def get(self, request, owner_id):
+        queryset = Car.objects.filter(car_owner_id=owner_id)
+        read_serializer = CarSerializer(queryset, many=True)
 
         return Response(read_serializer.data)
 
     def post(self, request, owner_id):
         car_owner = CarOwner.objects.get(pk=owner_id);
-        
-        car_data = request.data
-        car_data["car_owner"] = car_owner
 
-        create_serializer = CarSerializer(data=request.data)
+        car_data = request.data
+        car_data["car_owner_id"] = owner_id
+
+        create_serializer = CarSerializer(data=car_data)
 
         if create_serializer.is_valid():
             car = create_serializer.save()

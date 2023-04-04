@@ -22,6 +22,7 @@ class CarSerializer(serializers.ModelSerializer):
         YELLOW = 'yellow',
         BLUE = 'blue',
         GRAY = 'gray',
+    car_owner_id = serializers.IntegerField(required=True)
     model = serializers.CharField(max_length=200, required=True)
     price = serializers.FloatField(required=True)
     color = serializers.ChoiceField(
@@ -31,7 +32,7 @@ class CarSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         return Car.objects.create(
-            car_owner=validated_data.get('car_owner'),
+            car_owner_id=validated_data.get('car_owner_id'),
             model=validated_data.get('model'),
             price=validated_data.get('price'),
             color=validated_data.get('color')
@@ -41,7 +42,7 @@ class CarSerializer(serializers.ModelSerializer):
         model = CarOwner
         fields = (
             'id',
-            'car_owner',
+            'car_owner_id',
             'model',
             'price',
             'color',
