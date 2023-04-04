@@ -42,7 +42,10 @@ class CarView(
         return Response(read_serializer.data)
 
     def post(self, request, owner_id):
-        car_owner = CarOwner.objects.get(pk=owner_id);
+        owner_cars = Car.objects.filter(car_owner_id=owner_id)
+
+        if len(owner_cars) == 3:
+            return Response({"message": "a person should have up to 3 cars"}, status=400)
 
         car_data = request.data
         car_data["car_owner_id"] = owner_id
