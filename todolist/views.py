@@ -2,75 +2,60 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.mixins import UpdateModelMixin, DestroyModelMixin
 
-from .models import Car
-from .serializers import TodoSerializer
+from .models import Car, CarOwner
+from .serializers import CarOwnerSerializer, CarSerializer
 
-
-class TodoListView(
-    APIView,  # Basic View class provided by the Django Rest Framework
-    UpdateModelMixin,  # Mixin that allows the basic APIView to handle PUT HTTP requests
-    DestroyModelMixin,  # Mixin that allows the basic APIView to handle DELETE HTTP requests
+class CarOwnerView(
+    APIView,
+    UpdateModelMixin,
+    DestroyModelMixin,
 ):
 
     def get(self, request, id=None):
-        if id:
-            try:
-                queryset = Car.objects.get(id=id)
-            except Car.DoesNotExist:
-                return Response({'errors': 'This todo item does not exist.'}, status=400)
-
-            read_serializer = TodoSerializer(queryset)
-
-        else:
-
-            queryset = Car.objects.all()
-
-            read_serializer = TodoSerializer(queryset, many=True)
+        queryset = CarOwner.objects.all()
+        read_serializer = CarOwnerSerializer(queryset, many=True)
 
         return Response(read_serializer.data)
 
     def post(self, request):
 
-        create_serializer = TodoSerializer(data=request.data)
+        create_serializer = CarOwnerSerializer(data=request.data)
 
         if create_serializer.is_valid():
+            car_owner = create_serializer.save()
+            read_serializer = CarOwnerSerializer(car_owner)
 
-            todo_item_object = create_serializer.save()
+            return Response(read_serializer.data, status=201)
 
-            read_serializer = TodoSerializer(todo_item_object)
+        return Response(create_serializer.errors, status=400)
+    
+class CarView(
+    APIView,
+    UpdateModelMixin,
+    DestroyModelMixin,
+):
+
+    def get(self, request):
+        queryset = CarSerializer.objects.all()
+        read_serializer = CarOwnerSerializer(queryset, many=True)
+
+        return Response(read_serializer.data)
+
+    def post(self, request, owner_id):
+        car_owner = CarOwner.objects.get(pk=owner_id);
+        
+        car_data = request.data
+        car_data["car_owner"] = car_owner
+
+        create_serializer = CarSerializer(data=request.data)
+
+        if create_serializer.is_valid():
+            car = create_serializer.save()
+            read_serializer = CarSerializer(car)
 
             return Response(read_serializer.data, status=201)
 
         return Response(create_serializer.errors, status=400)
 
-    def put(self, request, id=None):
-        try:
 
-            todo_item = Car.objects.get(id=id)
-        except Car.DoesNotExist:
 
-            return Response({'errors': 'This todo item does not exist.'}, status=400)
-
-        update_serializer = TodoSerializer(todo_item, data=request.data)
-
-        if update_serializer.is_valid():
-
-            todo_item_object = update_serializer.save()
-
-            read_serializer = TodoSerializer(todo_item_object)
-
-            return Response(read_serializer.data, status=200)
-
-        return Response(update_serializer.errors, status=400)
-
-    def delete(self, request, id=None):
-        try:
-
-            todo_item = Car.objects.get(id=id)
-        except Car.DoesNotExist:
-
-            return Response({'errors': 'This todo item does not exist.'}, status=400)
-
-        todo_item.delete()
-
-        return Response(status=204)

@@ -1,26 +1,49 @@
 from rest_framework import serializers
+from django.db import models
+from .models import Car, CarOwner
 
-from .models import Car
-
-
-class TodoSerializer(serializers.ModelSerializer):
-    text = serializers.CharField(max_length=1000, required=True)
+class CarOwnerSerializer(serializers.ModelSerializer):
+    name = serializers.CharField(max_length=200, required=True)
 
     def create(self, validated_data):
-        # Once the request data has been validated, we can create a todo item instance in the database
-        return Car.objects.create(
-            text=validated_data.get('text')
+        return CarOwner.objects.create(
+            name=validated_data.get('name')
         )
-
-    def update(self, instance, validated_data):
-       # Once the request data has been validated, we can update the todo item instance in the database
-        instance.text = validated_data.get('text', instance.text)
-        instance.save()
-        return instance
 
     class Meta:
-        model = Car
+        model = CarOwner
         fields = (
             'id',
-            'text'
+            'name'
         )
+
+class CarSerializer(serializers.ModelSerializer):
+    class Color(models.TextChoices):
+        YELLOW = 'yellow',
+        BLUE = 'blue',
+        GRAY = 'gray',
+    model = serializers.CharField(max_length=200, required=True)
+    price = serializers.FloatField(required=True)
+    color = serializers.ChoiceField(
+        choices=Color.choices,
+        required=True
+    )
+
+    def create(self, validated_data):
+        return Car.objects.create(
+            car_owner=validated_data.get('car_owner'),
+            model=validated_data.get('model'),
+            price=validated_data.get('price'),
+            color=validated_data.get('color')
+        )
+
+    class Meta:
+        model = CarOwner
+        fields = (
+            'id',
+            'car_owner',
+            'model',
+            'price',
+            'color',
+        )
+
