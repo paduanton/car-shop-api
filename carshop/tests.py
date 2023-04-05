@@ -265,7 +265,7 @@ class CarOwnerAPITesting(APITestCase):
         CarOwner.objects.create(
             name="Padua"
         )
-        self.car_owner.save()
+        
 
         http_response = self.client.get("/car_owners", **authorization_header, format="json")
 
