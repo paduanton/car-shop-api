@@ -1,7 +1,7 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.mixins import UpdateModelMixin, DestroyModelMixin
-
+from rest_framework.permissions import IsAuthenticated
 from .models import Car, CarOwner
 from .serializers import CarOwnerSerializer, CarSerializer
 
@@ -10,6 +10,7 @@ class CarOwnerView(
     UpdateModelMixin,
     DestroyModelMixin,
 ):
+    permission_classes = (IsAuthenticated,)
 
     def get(self, request, id=None):
         queryset = CarOwner.objects.all()
@@ -44,6 +45,7 @@ class CarView(
     UpdateModelMixin,
     DestroyModelMixin,
 ):
+    permission_classes = (IsAuthenticated,)
 
     def get(self, request, owner_id):
         queryset = Car.objects.filter(car_owner_id=owner_id)

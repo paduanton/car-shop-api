@@ -9,11 +9,19 @@
 		{
 			"name": "http://localhost:8000/car_owner/{ownerId}/cars",
 			"request": {
+				"auth": {
+					"type": "noauth"
+				},
 				"method": "POST",
 				"header": [
 					{
 						"key": "Content-Type",
 						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Token 1dd260a72829986fad06988bfe80cc7431d3aa71",
 						"type": "text"
 					}
 				],
@@ -51,6 +59,11 @@
 						"key": "Content-Type",
 						"value": "application/json",
 						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Token 1dd260a72829986fad06988bfe80cc7431d3aa71",
+						"type": "text"
 					}
 				],
 				"body": {
@@ -82,10 +95,9 @@
 				"method": "GET",
 				"header": [
 					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text",
-						"disabled": true
+						"key": "Authorization",
+						"value": "Token 1dd260a72829986fad06988bfe80cc7431d3aa71",
+						"type": "text"
 					},
 					{
 						"key": "Accept",
@@ -110,15 +122,63 @@
 			"response": []
 		},
 		{
+			"name": "http://localhost:8000/api-token-auth",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"antonio\",\n    \"password\": \"nheac4257\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api-token-auth",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api-token-auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "http://localhost:8000/car_owners",
 			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "nheac4257",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "antonio",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [
 					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text",
-						"disabled": true
+						"key": "Authorization",
+						"value": "Token 1dd260a72829986fad06988bfe80cc7431d3aa71",
+						"type": "text"
 					},
 					{
 						"key": "Accept",
