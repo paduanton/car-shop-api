@@ -274,10 +274,10 @@ class CarOwnerAPITesting(APITestCase):
         self.assertEqual(len(http_response_data), 2)
         
         self.assertEqual(http_response_data[0]["name"], 'Antonio')
-        self.assertEqual(http_response_data[0]["id"], 1)
+        self.assertEqual(http_response_data[0]["id"], 9)
 
         self.assertEqual(http_response_data[1]["name"], 'Padua')
-        self.assertEqual(http_response_data[1]["id"], 2)
+        self.assertEqual(http_response_data[1]["id"], 10)
 
         self.assertEqual(http_response.status_code, 200)
 
