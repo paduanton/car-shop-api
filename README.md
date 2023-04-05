@@ -38,7 +38,6 @@ To view changes in the database, go to http://localhost:8181/ on browser and you
 #### Entity Relationship:
 - CarOwners 1 - N Cars
 
-
 ## Documentation
 
 You can access the Restful API public documentarion in the link below or [clicking here](https://www.postman.com/paduanton/workspace/antonio-de-pdua-s-public-workspace/collection/5889563-7f6ae96e-f38e-4ee8-971f-a877b996bbde?ctx=documentation). 
@@ -46,7 +45,32 @@ You can access the Restful API public documentarion in the link below or [clicki
 https://www.postman.com/paduanton/workspace/antonio-de-pdua-s-public-workspace/collection/5889563-7f6ae96e-f38e-4ee8-971f-a877b996bbde?ctx=documentation
 
 Also in the root dir there is a file called car-shop-api.postman_collection that you can import in your postman in order to see the API requests.
+
 ## Endpoints
 
 In **all** http calls you must have the header `Accept:application/json`. In http requests made with http POST verb you need to set the header `Content-Type:application/json`.
+
+In order to make any http request data to the API you MUST first have an API secure token, then in order to do that you must follow the next steps:
+
+1 - Create a superuser
+ ```
+docker exec -it car-shop-web python manage.py createsuperuser --username paduanton --email antonio@example.com
+```
+
+2 - Generate API token with username
+
+To do that you can run the command below on bash or you can make a POST request to `/api-token-auth` (request details are on postman API docs)
+ ```
+docker exec -it car-shop-web python manage.py drf_create_token paduanton 
+```
+
+3 - Set Authorization: Token you-token in all  API requests
+
+With your API token in hands you must set the Authorization header together with your token, so your http header shoud look like this:
+
+**Authorization: Token 1dd260a72829986fad06988bfe80cc7431d3aa71**
+
+4 - Enjoy the API
+
+
 
