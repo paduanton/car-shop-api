@@ -19,7 +19,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"model\": \"civic\",\n    \"price\": 45455.54,\n    \"color\": \"gray\"\n}",
+					"raw": "{\n    \"model\": \"hatch\",\n    \"price\": 45455.54,\n    \"color\": \"gray\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
