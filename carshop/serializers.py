@@ -2,6 +2,7 @@ from rest_framework import serializers
 from django.db import models
 from .models import Car, CarOwner
 
+
 class CarOwnerSerializer(serializers.ModelSerializer):
     name = serializers.CharField(max_length=200, required=True)
 
@@ -17,13 +18,24 @@ class CarOwnerSerializer(serializers.ModelSerializer):
             'name'
         )
 
+
 class CarSerializer(serializers.ModelSerializer):
     class Color(models.TextChoices):
         YELLOW = 'yellow',
         BLUE = 'blue',
         GRAY = 'gray',
+
+    class Model(models.TextChoices):
+        HATCH = 'hatch',
+        SEDAN = 'sedan',
+        CONVERTIBLE = 'convertible',
+
     car_owner_id = serializers.IntegerField(required=True)
-    model = serializers.CharField(max_length=200, required=True)
+    model = serializers.ChoiceField(
+        choices=Model.choices,
+        required=True
+    )
+
     price = serializers.FloatField(required=True)
     color = serializers.ChoiceField(
         choices=Color.choices,
@@ -47,4 +59,3 @@ class CarSerializer(serializers.ModelSerializer):
             'price',
             'color',
         )
-

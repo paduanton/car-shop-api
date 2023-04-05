@@ -28,12 +28,18 @@ class Car(models.Model):
         YELLOW = 'yellow',
         BLUE = 'blue',
         GRAY = 'gray',
+    class Model(models.TextChoices):
+        HATCH = 'hatch',
+        SEDAN = 'sedan',
+        CONVERTIBLE = 'convertible',
+
     id = models.AutoField(
         primary_key=True
     )
     car_owner = models.ForeignKey(CarOwner, on_delete=models.CASCADE)
     model = models.CharField(
-        max_length=100,
+        max_length=25,
+        choices=Model.choices,
     )
     price = models.FloatField(null=False, blank=False)
     color = models.CharField(

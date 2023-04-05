@@ -29,7 +29,7 @@ class Migration(migrations.Migration):
             name='Car',
             fields=[
                 ('id', models.AutoField(primary_key=True, serialize=False)),
-                ('model', models.CharField(max_length=100)),
+                ('model', models.CharField(choices=[('hatch', 'Hatch'), ('sedan', 'Sedan'), ('convertible', 'Convertible')], max_length=25)),
                 ('price', models.FloatField()),
                 ('color', models.CharField(choices=[('yellow', 'Yellow'), ('blue', 'Blue'), ('gray', 'Gray')], max_length=20)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
