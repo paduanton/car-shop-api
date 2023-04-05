@@ -8,7 +8,7 @@ services:
   db:
     container_name: car-shop-db
     environment:
-      MYSQL_ROOT_PASSWORD: "e2CS#TjE=Zs3AA"
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
       MYSQL_PASSWORD: ${DB_PASSWORD}
       MYSQL_DATABASE: ${DB_DATABASE}
       MYSQL_USER: ${DB_USERNAME}

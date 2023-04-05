@@ -61,7 +61,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'carshop',
-        'USER': 'carshop',
+        'USER': 'root', # using root so we can run tests against the dev database
         'PASSWORD': '201125',
         'HOST': 'db',
         'PORT': '3306',
