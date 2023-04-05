@@ -50,7 +50,7 @@ Also in the root dir there is a file called car-shop-api.postman_collection that
 
 In **all** http calls you must have the header `Accept:application/json`. In http requests made with http POST verb you need to set the header `Content-Type:application/json`.
 
-In order to make any http request data to the API you MUST first have an API secure token and order to do that you must follow the next steps:
+In order to make any http request data to the API you MUST first have an API secure token. In order to do that you must follow the next steps:
 
 1 - Create a superuser
  ```
@@ -59,14 +59,15 @@ docker exec -it car-shop-web python manage.py createsuperuser --username paduant
 
 2 - Generate API token with username
 
-To do that you can run the command below on bash or you can make a POST request to `/api-token-auth` (request details are on postman API docs)
- ```
+To create a new token you can run the command below on bash or you can make a POST request to `/api-token-auth` (request details are on postman API docs)
+
+```
 docker exec -it car-shop-web python manage.py drf_create_token paduanton 
 ```
 
 3 - Set `Authorization: Token {your-token}` header in all  API requests
 
-With your API token in hands you must set the Authorization header together with your token, after that your http header shoud look like this:
+With your API token in hands you must set the **Authorization** header together with your token, after that your http header shoud look like this:
 
 **Authorization: Token 1dd260a72829986fad06988bfe80cc7431d3aa71**
 
