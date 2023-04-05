@@ -14,8 +14,18 @@ class CarOwnerView(
     def get(self, request, id=None):
         queryset = CarOwner.objects.all()
         read_serializer = CarOwnerSerializer(queryset, many=True)
+        car_owners = []
 
-        return Response(read_serializer.data)
+        for car_owner in read_serializer.data:
+            cars_queryset = Car.objects.filter(car_owner_id=car_owner["id"])
+            cars = CarSerializer(cars_queryset, many=True)
+
+            owner = car_owner
+            owner["cars"] = cars.data;
+            
+            car_owners.append(owner)
+        
+        return Response(car_owners)
 
     def post(self, request):
 
