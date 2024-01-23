@@ -37,6 +37,7 @@ To view changes in the database, go to http://localhost:8181/ on browser and you
 
 #### Entity Relationship:
 - CarOwners 1 - N Cars
+- Sellers 1 - N Cars
 
 ## Documentation
 
