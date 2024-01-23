@@ -14,6 +14,19 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
+            name='Seller',
+            fields=[
+                ('id', models.AutoField(primary_key=True, serialize=False)),
+                ('name', models.CharField(max_length=200)),
+                ('employee_id', models.CharField(max_length=500)),
+                ('updated_at', models.DateTimeField(auto_now=True)),
+                ('created_at', models.DateTimeField(default=datetime.datetime.now)),
+            ],
+            options={
+                'db_table': 'sellers',
+            },
+        ),
+        migrations.CreateModel(
             name='CarOwner',
             fields=[
                 ('id', models.AutoField(primary_key=True, serialize=False)),
@@ -35,6 +48,7 @@ class Migration(migrations.Migration):
                 ('updated_at', models.DateTimeField(auto_now=True)),
                 ('created_at', models.DateTimeField(default=datetime.datetime.now)),
                 ('car_owner', models.ForeignKey(default='', on_delete=django.db.models.deletion.CASCADE, to='carshop.carowner')),
+                ('seller', models.ForeignKey(default='', on_delete=django.db.models.deletion.CASCADE, to='carshop.seller')),
             ],
             options={
                 'db_table': 'cars',
