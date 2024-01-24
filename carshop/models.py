@@ -71,7 +71,7 @@ class Car(models.Model):
         max_length=20,
         choices=Color.choices,
     )
-    price = models.BooleanField(null=False, blank=False)
+    available = models.BooleanField(null=False, blank=False)
     updated_at = models.DateTimeField(
         auto_now=True,
         null=False,

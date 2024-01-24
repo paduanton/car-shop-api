@@ -1,0 +1,29 @@
+[
+    {
+        "id": 1,
+        "car_owner_id": 1,
+        "seller_id": 2,
+        "model": "hatch",
+        "price": 12322.55,
+        "color": "red",
+        "available": false
+    },
+    {
+        "id": 2,
+        "car_owner_id": 1,
+        "seller_id": 2,
+        "model": "hatch",
+        "price": 12322.55,
+        "color": "red",
+        "available": true
+    },
+    {
+        "id": 3,
+        "car_owner_id": 2,
+        "seller_id": 2,
+        "model": "hatch",
+        "price": 12322.55,
+        "color": "red",
+        "available": false
+    }
+]

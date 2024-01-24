@@ -15,7 +15,9 @@ class CarOwnerSerializer(serializers.ModelSerializer):
         model = CarOwner
         fields = (
             'id',
-            'name'
+            'name',
+            'updated_at',
+            'created_at',
         )
 
 

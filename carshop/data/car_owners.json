@@ -1,0 +1,43 @@
+[
+    {
+        "id": 1,
+        "name": "Antonio",
+        "updated_at": "2024-01-24T19:09:36.440580Z",
+        "created_at": "2024-01-24T19:09:36.440332Z",
+        "cars": [
+            {
+                "id": 1,
+                "car_owner_id": 1,
+                "seller_id": 2,
+                "model": "hatch",
+                "price": 12322.55,
+                "color": "red",
+                "available": false
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Natália",
+        "updated_at": "2024-01-24T19:09:36.440580Z",
+        "created_at": "2024-01-24T19:09:36.440332Z",
+        "cars": [
+            {
+                "id": 3,
+                "car_owner_id": 2,
+                "seller_id": 2,
+                "model": "hatch",
+                "price": 12322.55,
+                "color": "red",
+                "available": false
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "name": "José",
+        "updated_at": "2024-01-24T19:09:36.440580Z",
+        "created_at": "2024-01-24T19:09:36.440332Z",
+        "cars": []
+    }
+]

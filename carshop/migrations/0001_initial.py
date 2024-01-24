@@ -42,13 +42,14 @@ class Migration(migrations.Migration):
             name='Car',
             fields=[
                 ('id', models.AutoField(primary_key=True, serialize=False)),
+                ('car_owner', models.ForeignKey(default='', on_delete=django.db.models.deletion.CASCADE, to='carshop.carowner')),
+                ('seller', models.ForeignKey(default='', on_delete=django.db.models.deletion.CASCADE, to='carshop.seller')),
                 ('model', models.CharField(choices=[('hatch', 'Hatch'), ('sedan', 'Sedan'), ('convertible', 'Convertible')], max_length=25)),
                 ('price', models.FloatField()),
+                ('available', models.BooleanField()),
                 ('color', models.CharField(choices=[('yellow', 'Yellow'), ('blue', 'Blue'), ('gray', 'Gray')], max_length=20)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
                 ('created_at', models.DateTimeField(default=datetime.datetime.now)),
-                ('car_owner', models.ForeignKey(default='', on_delete=django.db.models.deletion.CASCADE, to='carshop.carowner')),
-                ('seller', models.ForeignKey(default='', on_delete=django.db.models.deletion.CASCADE, to='carshop.seller')),
             ],
             options={
                 'db_table': 'cars',
